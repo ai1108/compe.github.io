@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>競賽參與紀錄</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form_control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .send_btn {
+            background-color: rgb(255, 148, 127);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .send_btn:hover {
+            background-color: crimson;
+        }
+        .textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body style="background-color: #68c7ff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="text-align:center;">競賽參與紀錄</h1>
+                <hr>
+                <form id="mainForm" action="index.html" method="get" class="main_form">
+                    <h3>競賽資料填寫</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="form_control" placeholder="姓名" type="text" name="user" id="user" autofocus required>
+                        </div>
+                        <div class="col-md-12" id="courseContainer"></div>
+                        <div class="col-md-12">
+                            <input class="send_btn" type="button" value="添加競賽" onclick="addCourseForm()">
+                            <input class="send_btn" type="reset" value="取消">
+                            <input class="send_btn" type="submit" value="送出">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+    function addCourseForm() {
+        const container = document.getElementById('courseContainer');
+        const courseDiv = document.createElement('div');
+        courseDiv.className = 'form-group';
+
+        courseDiv.innerHTML = `
+            <div class="row">
+                <div class="col-md-12">
+                    <input class="form_control" placeholder="競賽名稱" type="text" name="class" required>
+                </div>
+                <div class="col-md-12">
+                    <input class="form_control" placeholder="主題名稱" type="text" name="theme" required>
+                </div>
+                <div class="col-md-12">
+                    <input class="form_control" type="file" name="fileUpload" accept=".pdf,.doc,.docx,.jpg,.png" required>
+                </div>
+                <div class="col-md-12">
+                    <input class="send_btn" type="button" value="確認" onclick="confirmCourse(this)">
+                    <input class="send_btn" type="button" value="取消" onclick="removeCourse(this)">
+                </div>
+            </div>
+        `;
+        container.appendChild(courseDiv);
+    }
+
+    function confirmCourse(button) {
+        alert('資料已確認');
+    }
+
+    function removeCourse(button) {
+        const courseDiv = button.parentElement.parentElement.parentElement;
+        courseDiv.remove();
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
